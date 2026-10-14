@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Sign in | CloudBox{% endblock %}
+{% block content %}
+<section class="auth-card">
+  <div class="eyebrow">WELCOME BACK</div>
+  <h1>Sign in to CloudBox</h1>
+  <p class="muted">Access your files from anywhere.</p>
+  <form method="post" class="form-stack">
+    <label>Email address<input type="email" name="email" autocomplete="email" required></label>
+    <label>Password<input type="password" name="password" autocomplete="current-password" required></label>
+    <button class="button button-accent button-full" type="submit">Sign in</button>
+  </form>
+  <p class="form-footer">New here? <a href="{{ url_for('auth.register') }}">Create an account</a></p>
+</section>
+{% endblock %}

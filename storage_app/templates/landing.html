@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}CloudBox | Simple cloud file storage{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">CLOUD FILE STORAGE</div>
+    <h1>Your files,<br><span>wherever you work.</span></h1>
+    <p class="hero-text">Upload, organize, and download your important files from one secure, simple workspace.</p>
+    <div class="hero-actions">
+      <a class="button button-accent button-large" href="{{ url_for('auth.register') }}">Start storing free <span>→</span></a>
+      <a class="text-link" href="{{ url_for('auth.login') }}">Already have an account? Sign in</a>
+    </div>
+  </div>
+  <div class="hero-art" aria-label="Cloud storage illustration">
+    <div class="cloud cloud-back"></div>
+    <div class="cloud cloud-front"><span>☁</span></div>
+    <div class="file-card card-one"><b>PDF</b><span>project-brief.pdf</span></div>
+    <div class="file-card card-two"><b>IMG</b><span>team-photo.png</span></div>
+    <div class="file-card card-three"><b>DOC</b><span>notes.docx</span></div>
+  </div>
+</section>
+<section class="feature-grid">
+  <article><div class="feature-icon">↑</div><h3>Upload in seconds</h3><p>Drag your files into a clean, distraction-free dashboard.</p></article>
+  <article><div class="feature-icon">⌁</div><h3>Cloud-ready by design</h3><p>Switch from local development to Amazon S3 with one setting.</p></article>
+  <article><div class="feature-icon">✓</div><h3>Built to ship</h3><p>Automated tests, Docker, and GitHub Actions are included.</p></article>
+</section>
+{% endblock %}

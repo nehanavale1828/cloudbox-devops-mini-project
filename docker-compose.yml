@@ -1,0 +1,18 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      SECRET_KEY: ${SECRET_KEY:-local-docker-secret-change-me}
+      DATABASE_URL: ${DATABASE_URL:-sqlite:///storage.db}
+      STORAGE_BACKEND: ${STORAGE_BACKEND:-local}
+      STORAGE_ROOT: /app/instance/uploads
+      MAX_UPLOAD_MB: ${MAX_UPLOAD_MB:-16}
+      S3_BUCKET: ${S3_BUCKET:-}
+      S3_REGION: ${S3_REGION:-us-east-1}
+      S3_ENDPOINT_URL: ${S3_ENDPOINT_URL:-}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+    volumes:
+      - ./data:/app/instance

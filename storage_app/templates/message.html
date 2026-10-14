@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} | CloudBox{% endblock %}
+{% block content %}
+<section class="auth-card message-card"><div class="feature-icon">!</div><h1>{{ title }}</h1><p class="muted">{{ message }}</p><a class="button button-accent" href="{{ url_for('files.landing') }}">Return home</a></section>
+{% endblock %}

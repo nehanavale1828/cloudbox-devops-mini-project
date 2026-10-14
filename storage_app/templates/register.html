@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Create account | CloudBox{% endblock %}
+{% block content %}
+<section class="auth-card">
+  <div class="eyebrow">GET STARTED</div>
+  <h1>Create your account</h1>
+  <p class="muted">Your personal cloud file workspace is one step away.</p>
+  <form method="post" class="form-stack">
+    <label>Email address<input type="email" name="email" autocomplete="email" required></label>
+    <label>Password <small>(at least 8 characters)</small><input type="password" name="password" autocomplete="new-password" minlength="8" required></label>
+    <label>Confirm password<input type="password" name="confirm_password" autocomplete="new-password" minlength="8" required></label>
+    <button class="button button-accent button-full" type="submit">Create account</button>
+  </form>
+  <p class="form-footer">Already registered? <a href="{{ url_for('auth.login') }}">Sign in</a></p>
+</section>
+{% endblock %}
