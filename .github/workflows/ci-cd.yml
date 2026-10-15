@@ -73,3 +73,40 @@ jobs:
             curl --fail --silent --show-error -X POST "$RENDER_DEPLOY_HOOK"
             echo "Render deployment triggered."
           fi
+
+ 
+  monitor:
+    name: Monitor application health
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Start CloudBox application
+        run: |
+          nohup python -m flask --app wsgi run --host 127.0.0.1 --port 8000 > app.log 2>&1 &
+          echo $! > app.pid
+
+      - name: Monitor application health
+        run: |
+          for i in {1..15}; do
+            if curl --fail --silent http://127.0.0.1:8000/healthz; then
+              echo "MONITORING PASSED: CloudBox is healthy."
+              exit 0
+            fi
+            echo "Waiting for CloudBox... attempt $i"
+            sleep 2
+          done
+
+          echo "MONITORING FAILED: CloudBox health check did not pass."
+          cat app.log
+          exit 1
